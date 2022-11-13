@@ -68,3 +68,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Links Specific to Learn React in 30 Minutes App
+This project is my own study of "Web Dev Simplified"'s "React Todo List App" found at [https://github.com/WebDevSimplified/Learn-React-In-30-Minutes](https://github.com/WebDevSimplified/Learn-React-In-30-Minutes)
+Video for the tutorial can be found at [Learn React In 30 Minutes](https://www.youtube.com/watch?v=hQAHSlTtcmY)
+
