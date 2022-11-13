@@ -3,8 +3,8 @@ import TodoList from './TodoList';
 
 function App() {
   const [todos, setTodos] = useState([
-    {id: 1, name:'To Do 1', completed:false }, 
-    {id: 2, name:'To Do 2', completed:false }
+    {id: 1, name:'To Do 1', isCompleted:false }, 
+    {id: 2, name:'To Do 2', isCompleted:true }
   ]);
 
   return (
