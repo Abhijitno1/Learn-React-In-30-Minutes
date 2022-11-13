@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function Todo() {
+export default function Todo({todoobj}) {
     return (
         <div>
             <label>
-                todo.name
+                {todoobj.name}
             </label>
         </div>
     );
