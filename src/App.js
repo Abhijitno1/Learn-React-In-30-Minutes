@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import TodoList from './TodoList';
 
 function App() {
@@ -7,6 +7,8 @@ function App() {
     {id: 2, name:'To Do 2', isCompleted:true }
   ]);
 
+  const todoNameRef = useRef();
+
   function toggleIsCompleted(todoid) {
     const newTodos = [...todos];
     const fndtodo= newTodos.find(fnd => fnd.id == todoid);
@@ -14,11 +16,23 @@ function App() {
     setTodos(newTodos);
   }
 
+  function handleTodoAdd() {
+    if (todoNameRef.current.value != '') {
+      const newTodo = {
+        id: todos.length, 
+        name: todoNameRef.current.value,
+        isCompleted: false
+      };
+      setTodos([...todos, newTodo]);
+    }
+    todoNameRef.current.value = ''
+  }
+
   return (
     <>
       <TodoList todos={todos} toggleIsCompleted={toggleIsCompleted} />
-      <input type="text" /> <br/>
-      <button>Add ToDo</button>
+      <input type="text" ref={todoNameRef} /> <br/>
+      <button onClick={handleTodoAdd}>Add ToDo</button>
       <button>Clear Completed</button>
       <div>{todos.filter(todo => todo.isCompleted===false).length} left to do</div>
     </>
