@@ -1,6 +1,6 @@
 import {Route, Routes} from 'react-router-dom';
 import Navbar from './Navbar';
-import TodoApp from './TodoApp';
+import TodoApp from './TodoApp/TodoApp';
 import Pricing from './Pricing';
 import About from './About';
 
