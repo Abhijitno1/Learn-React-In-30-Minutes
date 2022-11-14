@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Learn-React-In-30-Minutes/static/css/main.70819b69.css",
+    "main.js": "/Learn-React-In-30-Minutes/static/js/main.3651ed37.js",
+    "index.html": "/Learn-React-In-30-Minutes/index.html",
+    "main.70819b69.css.map": "/Learn-React-In-30-Minutes/static/css/main.70819b69.css.map",
+    "main.3651ed37.js.map": "/Learn-React-In-30-Minutes/static/js/main.3651ed37.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.70819b69.css",
+    "static/js/main.3651ed37.js"
+  ]
+}
