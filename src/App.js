@@ -1,7 +1,7 @@
 import {Route, Routes} from 'react-router-dom';
 import Navbar from './Navbar';
 import TodoApp from './TodoApp/TodoApp';
-import Pricing from './Pricing';
+import CurConverter from './CurrencyConverter/CurConverter';
 import About from './About';
 
 
@@ -13,7 +13,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path='/' element={<TodoApp/>} />
-          <Route path='/pricing' element={<Pricing/>} />
+          <Route path='/curconvert' element={<CurConverter/>} />
           <Route path='/about' element={<About/>} />
         </Routes>
       </div>

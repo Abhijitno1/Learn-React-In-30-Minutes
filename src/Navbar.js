@@ -7,7 +7,7 @@ export default function Navbar() {
                 Learn React in 30 Minutes
             </Link>
             <ul>
-                <CustomLink to="/pricing">Pricing</CustomLink>
+                <CustomLink to="/curconvert">Currency Converter</CustomLink>
                 <CustomLink to="/about">About</CustomLink>
             </ul>
         </nav>
