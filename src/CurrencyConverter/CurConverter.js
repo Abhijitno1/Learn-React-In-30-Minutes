@@ -9,6 +9,8 @@ export default function CurConverter () {
     const [exchangeRate, setExchangeRate]= useState();
     const [currencyOptions, setCurrencyOptions] = useState([]);
     const [amtChangeInFromCcy, setAmtChangeInFromCcy] = useState(true);
+    //https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript
+    var rateDate = new Date().toLocaleDateString("en-US", {day:'numeric', month: 'long', year: 'numeric'});
     var dummyData = {
         "date": "2020-07-02 10:39:00+00",
         "base": "USD",
@@ -49,10 +51,10 @@ export default function CurConverter () {
         .then(data => {//console.log('data', data));
             //let data = dummyData;
             localStorage.setItem('dummyData', JSON.stringify(data));
-            dummyData=data; //Now we are fetching from API. So replace local dummy data
+            rateDate = data.date;
             let curopts = [...Object.keys(data.rates)];
             curopts = curopts.sort();
-            let baseCurrency = data.base, firstCurrency= curopts[1];
+            let baseCurrency = data.base, firstCurrency= "INR";
             setCurrencyOptions(curopts);
             setFromCurrency(baseCurrency);
             setToCurrency(firstCurrency);
@@ -64,6 +66,7 @@ export default function CurConverter () {
          /*fetch(`BASE_API_URL&symbols${toCurrency}`)
         .then(res => res.json())
         .then(data => console.log('data', data));*/
+        if (!(fromAmount && toAmount)) return; //Both from and to amounts must be > 0
         dummyData = JSON.parse(localStorage.getItem('dummyData'))
         let data= dummyData;
         let proprate;
@@ -89,6 +92,7 @@ export default function CurConverter () {
     return (
         <>
             <h1>Convert</h1>
+            <h2>Rates as of {rateDate}</h2>
             <CurrencyRow amount={fromAmount} onChangeAmount={handleFromAmountChange}
                 currencyOptions = {currencyOptions}
                 selectedCurrency={fromCurrency} onCurrencyChange={e =>setFromCurrency(e.target.value)}
