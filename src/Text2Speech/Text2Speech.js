@@ -42,6 +42,7 @@ export default function Text2Speech() {
         if (speechSynthesis.speaking) return;
         utterance.text = text;
         utterance.rate = speed || 1;
+        utterance.voice = window.speechSynthesis.getVoices()[3];
         userTextRef.current.disabled = true;
 
         speechSynthesis.speak(utterance);
@@ -62,7 +63,7 @@ export default function Text2Speech() {
             <textarea style={userTextStyle} value={userText} onChange={textChanged} ref={userTextRef}></textarea>
             <label htmlFor="speed">Speed</label>
             <input type="number"  min="0.5" max="3" step="0.5" value={speed} onChange={speedChanged}></input>
-            <button style={{marginLeft: '1rem'}} onClick={playDialog} >Play</button>
+            <button style={{marginLeft: '1rem'}} onClick={playDialog} >Read</button>
             <button style={{marginLeft: '1rem'}} onClick={pauseDialog} >Pause</button>
             <button style={{marginLeft: '1rem'}} onClick={shutUp}>Stop</button>
         </div>

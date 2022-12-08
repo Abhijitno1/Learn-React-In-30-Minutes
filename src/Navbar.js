@@ -10,6 +10,7 @@ export default function Navbar() {
                 <CustomLink to="/modaldemo">Modal Demo</CustomLink>
                 <CustomLink to="/curconvert">Currency Converter</CustomLink>
                 <CustomLink to="/text2speech">Text Reader</CustomLink>
+                <CustomLink to="/speech2text">Steno Writer</CustomLink>
                 <CustomLink to="/about">About</CustomLink>
             </ul>
         </nav>
