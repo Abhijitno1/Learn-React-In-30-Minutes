@@ -14,9 +14,10 @@ export default function Speech2Text() {
     const [userText, setUserText] = useState('');
     let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition = new SpeechRecognition();
-    recognition.continuous = true;
+    recognition.continuous = false;
 
     function listenDialog() {
+        setUserText('');
         recognition.start();
     }
 
@@ -29,8 +30,7 @@ export default function Speech2Text() {
     function stopIt() {
         //https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
         recognition.stop();
-        recognition.abort();
-        setUserText('');
+        //recognition.abort();
     }
 
     return (

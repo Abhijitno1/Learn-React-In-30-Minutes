@@ -19,7 +19,9 @@ export default function ModalGround() {
             <div style={BUTTON_WRAPPER_STYLES} onClick={() => console.log('ground wrapper div clicked')}>
                 <button onClick={() => setIsOpen(true)}>Open Modal</button>
                 <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-                    Modal content
+                    <h1>About Learn React App</h1>
+                    <p>This app shows simple demos of using React to explain few core concepts</p>
+                    <p>Reorganized and enhanced by Abhijit D based on "Web Dev Simplied"'s React Tutorials on YouTube</p>
                 </Modal>
             </div>
             <p></p>
