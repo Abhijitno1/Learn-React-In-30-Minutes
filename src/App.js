@@ -5,6 +5,7 @@ import ModalGround from './ModalDemo/ModalGround'
 import CurConverter from './CurrencyConverter/CurConverter';
 import Text2Speech from './Text2Speech/Text2Speech';
 import Speech2Text from './Text2Speech/Speech2Text';
+import CurrentWeather from './Weather/CurrentWeather';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path='/' element={<TodoApp/>} />
+          <Route path='/curweather' element={<CurrentWeather/>} />
           <Route path='/curconvert' element={<CurConverter/>} />
           <Route path='/text2speech' element={<Text2Speech/>} />
           <Route path='/speech2text' element={<Speech2Text/>} />
