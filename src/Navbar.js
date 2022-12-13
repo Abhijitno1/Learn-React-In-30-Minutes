@@ -10,8 +10,15 @@ export default function Navbar() {
                 <CustomLink to="/converters">Converters</CustomLink>
                 <CustomLink to="/curweather">Current Weather</CustomLink>
                 <CustomLink to="/curconvert">Currency Converter</CustomLink>
-                <CustomLink to="/text2speech">Text Reader</CustomLink>
-                <CustomLink to="/speech2text">Steno Writer</CustomLink>
+                <div class="ddropdown">
+                    <button type="button" class="dropbtn">
+                        Voice Utils <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <li><CustomLink to="/text2speech">Text Reader</CustomLink></li>
+                        <li><CustomLink to="/speech2text">Steno Writer</CustomLink></li>
+                    </div>
+                </div>
                 <CustomLink to="/about">About</CustomLink>
             </ul>
         </nav>

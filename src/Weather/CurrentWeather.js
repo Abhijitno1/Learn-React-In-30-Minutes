@@ -79,8 +79,8 @@ export default function CurrentWeather() {
 
     return (
         <div style={chhotaWidth}>
-            <div class="card">
-                <div class="card-body">
+            <div className="card">
+                <div className="card-body">
                     <label htmlFor="citySelector" style={{marginRight: '1rem'}}>Select City</label> 
                     <select name="citySelector" onChange={onCitySelected}>
                         <option></option>
@@ -93,11 +93,11 @@ export default function CurrentWeather() {
                     </select> 
                 </div>
             </div>
-            <div class="alert alert-info">
+            <div className="alert alert-info">
             Current Weather
             </div>
             { weatherParams && weatherParams.city && 
-            <table className="table table-bordered weathertable">
+            <table className="table table-bordered weather-table">
                 <tr><td>City Name</td><td>{weatherParams.city}</td></tr>
                 <tr><td>Longitude</td><td>{weatherParams.long}</td></tr>
                 <tr><td>Latitude</td><td>{weatherParams.lati}</td></tr>
