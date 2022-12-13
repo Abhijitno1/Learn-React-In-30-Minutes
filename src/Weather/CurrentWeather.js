@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const chhotaWidth = {
+    width: '40%',
+    margin: '0 auto',
+    textAlign: 'initial'
+};
+
 export default function CurrentWeather() {
     const [weatherParams, setWeatherParams] = useState();
 
@@ -72,10 +78,10 @@ export default function CurrentWeather() {
     }
 
     return (
-        <>
+        <div style={chhotaWidth}>
             <div class="card">
                 <div class="card-body">
-                    <label for="citySelector" style={{marginRight: '1rem'}}>Select City</label> 
+                    <label htmlFor="citySelector" style={{marginRight: '1rem'}}>Select City</label> 
                     <select name="citySelector" onChange={onCitySelected}>
                         <option></option>
                         <option value="-78.82|35.82">Morrisville NC USA</option>
@@ -91,7 +97,7 @@ export default function CurrentWeather() {
             Current Weather
             </div>
             { weatherParams && weatherParams.city && 
-            <table className="table table-bordered">
+            <table className="table table-bordered weathertable">
                 <tr><td>City Name</td><td>{weatherParams.city}</td></tr>
                 <tr><td>Longitude</td><td>{weatherParams.long}</td></tr>
                 <tr><td>Latitude</td><td>{weatherParams.lati}</td></tr>
@@ -110,6 +116,6 @@ export default function CurrentWeather() {
                 <tr><td>Wind Direction</td><td>{weatherParams.windDir}</td></tr>
             </table>
             }
-        </>
+        </div>
     )
 }

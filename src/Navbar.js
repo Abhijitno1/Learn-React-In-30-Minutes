@@ -7,6 +7,7 @@ export default function Navbar() {
                 Learn React in 30 Minutes
             </Link>
             <ul>
+                <CustomLink to="/converters">Converters</CustomLink>
                 <CustomLink to="/curweather">Current Weather</CustomLink>
                 <CustomLink to="/curconvert">Currency Converter</CustomLink>
                 <CustomLink to="/text2speech">Text Reader</CustomLink>

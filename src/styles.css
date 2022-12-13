@@ -70,3 +70,7 @@ div.equals {
   font-weight: bold;
   font-size: 2rem;
 }
+
+.weathertable td {
+  padding-left: 1em;
+}

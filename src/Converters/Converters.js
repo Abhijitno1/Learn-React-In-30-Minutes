@@ -17,13 +17,27 @@ const sidebarHeader = {
 export default function Converters() {
     const [fromValue, setFromValue] = useState();
     const [toValue, setToValue] = useState();
+    const [fromUnit, setfromUnit] = useState();
+    const [toUnit, setToUnit] = useState();
 
     function onChangeFromValue(e) {
         setFromValue(e.target.value);
+        console.log('toValue', toValue);
     }
 
     function onChangeToValue(e) {
         setToValue(e.target.value);
+    }
+    
+    function setCurConverter(ctype) {
+        switch (ctype) {
+            case "Gallon2Litre":
+                setfromUnit('Gallon');
+                setToUnit('Litre');
+                break;
+            default:
+                //do nothing
+        }
     }
 
     return (
@@ -32,31 +46,31 @@ export default function Converters() {
                 <div style={sidebarHeader}><h3>Converters</h3></div>
                 <ul className="list-unstyled components">
                     <li className="nav-item aaa">
-                        <a className="nav-link" href="Javascript: return false;" onClick={convertGallon2Litre}>
+                        <a className="nav-link" href="Javascript: return false;" onClick={setCurConverter('Gallon2Litre')}>
                             <i className="glyphicon glyphicon-book"></i>
                             <span>Gallon :: Litre</span>
                         </a>
                     </li>
                     <li className="nav-item aaa">
-                        <a className="nav-link" href="Javascript: return false;" onClick={convertMiles2Km}>
+                        <a className="nav-link" href="Javascript: return false;" onClick={setCurConverter('Miles2Km')}>
                             <i className="glyphicon glyphicon-book"></i>
                             <span>Miles :: Km</span>
                         </a>
                     </li>
                     <li className="nav-item aaa">
-                        <a className="nav-link" href="Javascript: return false;" onClick={convertFah2Cel}>
+                        <a className="nav-link" href="Javascript: return false;" onClick={setCurConverter('Fah2Cel')}>
                             <i className="glyphicon glyphicon-book"></i>
                             <span>Farenhite :: Celcius</span>
                         </a>
                     </li>
                     <li className="nav-item aaa">
-                        <a className="nav-link" href="Javascript: return false;" onClick={convertFtInch2Mtr}>
+                        <a className="nav-link" href="Javascript: return false;" onClick={setCurConverter('FtInch2Mtr')}>
                             <i className="glyphicon glyphicon-book"></i>
                             <span>Foot and Inch :: Meters</span>
                         </a>
                     </li>
                     <li className="nav-item aaa">
-                        <a className="nav-link" href="Javascript: return false;" onClick={convertPound2Kg}>
+                        <a className="nav-link" href="Javascript: return false;" onClick={setCurConverter('Pound2Kg')}>
                             <i className="glyphicon glyphicon-book"></i>
                             <span>Pound :: Kilogram</span>
                         </a>
