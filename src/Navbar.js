@@ -7,9 +7,17 @@ export default function Navbar() {
                 Learn React in 30 Minutes
             </Link>
             <ul>
-                <CustomLink to="/converters">Converters</CustomLink>
+                <CustomLink to="/translator">Translator</CustomLink>
                 <CustomLink to="/curweather">Current Weather</CustomLink>
-                <CustomLink to="/curconvert">Currency Converter</CustomLink>
+                <div class="ddropdown">
+                    <button type="button" class="dropbtn">
+                        Converters <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <li><CustomLink to="/converters">British to Metric</CustomLink></li>
+                        <li><CustomLink to="/curconvert">Currency Converter</CustomLink></li>
+                    </div>
+                </div>
                 <div class="ddropdown">
                     <button type="button" class="dropbtn">
                         Voice Utils <i class="fa fa-caret-down"></i>

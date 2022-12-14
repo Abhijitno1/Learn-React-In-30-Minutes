@@ -7,6 +7,7 @@ import Text2Speech from './Text2Speech/Text2Speech';
 import Speech2Text from './Text2Speech/Speech2Text';
 import CurrentWeather from './Weather/CurrentWeather';
 import Converters from './Converters/Converters';
+import Translator from './Translator/Translator';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path='/' element={<TodoApp/>} />
+          <Route path='/translator' element={<Translator/>} />
           <Route path='/converters' element={<Converters/>} />
           <Route path='/curweather' element={<CurrentWeather/>} />
           <Route path='/curconvert' element={<CurConverter/>} />
