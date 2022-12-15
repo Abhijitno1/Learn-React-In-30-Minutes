@@ -9,9 +9,11 @@ const addlStyle = {
 
 export default function Translator() {
     const txtWhiteboardRef = useRef();
+    //https://cloud.google.com/translate/docs/languages
     const languages = {
         en: 'English',
         hi: 'Hindi',
+        mr: 'Marathi',
         fr: 'French',
         ja: 'Japanese',
         de: 'German',
@@ -19,7 +21,7 @@ export default function Translator() {
         ru: 'Russian'
     };
     const [fromLanguage, setFromLanguage] = useState('en');
-    const [toLanguage, setToLanguage] = useState('hi');
+    const [toLanguage, setToLanguage] = useState('mr');
     const [fromText, setFromText] = useState();
     const [toText, setToText] = useState();
 
@@ -36,28 +38,26 @@ export default function Translator() {
     }
 
     function executeTranslation() {
-        var rndClientTrcId = Math.floor(Math.random() * (999999 - 111111 + 1) + 111111)
+        const encodedParams = new URLSearchParams();
+        encodedParams.append("q", fromText);
+        encodedParams.append("target", toLanguage);
+        encodedParams.append("source", fromLanguage);
+        
 
         const options = {
             method: 'POST',
-            url: 'https://microsoft-translator-text.p.rapidapi.com/translate',
-            params: {
-              'to[0]': toLanguage,
-              'api-version': '3.0',
-              profanityAction: 'NoAction',
-              textType: 'plain'
-            },
+            url: 'https://google-translate1.p.rapidapi.com/language/translate/v2',
             headers: {
-              'content-type': 'application/json',
-              'X-RapidAPI-Key': '6f244ebf0fmshc7bd8c36a7d4a8dp1bfa45jsne7e627d56d5e',
-              'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com',
-              'X-ClientTraceId': rndClientTrcId
+              'content-type': 'application/x-www-form-urlencoded',
+              'Accept-Encoding': 'application/gzip',
+              'X-RapidAPI-Key': '3bffb589bamshe663ba8eeaec494p1067edjsnf23d4fdc1c55',
+              'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
             },
-            data: JSON.stringify([{Text: fromText}])
+            data: encodedParams
           };
         
         axios.request(options).then(function (response) {
-            console.log(response.data);
+            setToText(response.data.data.translations[0].translatedText);
         }).catch(function (error) {
             console.error(error);
         });
