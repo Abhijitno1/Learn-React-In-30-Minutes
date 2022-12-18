@@ -17,11 +17,12 @@ export default function CustomSelect({selValue, options}) {
 
     function setSelectedOption(whichValue) {
         setSelText('');
-        options.forEach(opt => {
+        soptions && soptions.forEach(opt => {
             if (opt.value == whichValue) {
                 setSselValue(whichValue);
                 setSelText(opt.text);
                 opt.selected = true;
+                //optionsCustomElement.scrollIntoView({ block: "nearest" });
             }
             else
                 opt.selected = false;
@@ -30,8 +31,8 @@ export default function CustomSelect({selValue, options}) {
 
     function getIndex4Value(whichValue) {
 
-        for(var i = 0; i<options.length; i++) {
-            if (options[i].value == whichValue)
+        for(var i = 0; i<soptions.length; i++) {
+            if (soptions[i].value == whichValue)
                return i;
         }
         return -1;
@@ -46,10 +47,12 @@ export default function CustomSelect({selValue, options}) {
 
     function onOptionSelected(e) {
         setSelectedOption(e.target.getAttribute('data-value'));
-        setSoptions([...options]);
+        setSoptions([...soptions]);
         showDropdown(false);
     }
 
+    let debounceTimeout
+    let searchTerm = sselValue;
     function onValueTyped(e) {
         switch(e.code) {
             case "Space":
@@ -62,29 +65,40 @@ export default function CustomSelect({selValue, options}) {
             case "ArrowUp":
                 var curSelIndex = getIndex4Value(sselValue);
                 let prevIndex= curSelIndex>0? curSelIndex-1 : 0;
-                let prevValue = options[prevIndex].value;
+                let prevValue = soptions[prevIndex].value;
                 setSelectedOption(prevValue);
                 break; 
             case "ArrowDown":
                 var curSelIndex = getIndex4Value(sselValue);
-                let nextIndex= curSelIndex<(options.length-1)? (curSelIndex+1) : (options.length-1);
-                let nextValue = options[nextIndex].value;
+                let nextIndex= curSelIndex<(soptions.length-1)? (curSelIndex+1) : (soptions.length-1);
+                let nextValue = soptions[nextIndex].value;
                 setSelectedOption(nextValue);
-                break; 
+                break;
+            case "Backspace":
+                if (sselValue.length>0)
+                    setSselValue(sselValue.substring(0, sselValue.length-1))
+                break;
+            default:
+                searchTerm += e.key;
+                clearTimeout(debounceTimeout)
+                debounceTimeout = setTimeout(() => {
+                    searchTerm = ""
+                  }, 500)
+          
+                const searchedOption = soptions.find(option => {
+                    return option.text.toLowerCase().startsWith(searchTerm)
+                  })
+                  if (searchedOption) {
+                    setSelectedOption(searchedOption.value)
+                  }
+                break;
         }
-        
     }
 
     function onValueChanged(e) {
         let searchTerm = e.target.value;
         setSelText(searchTerm);
         //Also search amongst available options in the list
-        const searchedOption = options.find(option => {
-            return option.text.toLowerCase().startsWith(searchTerm)
-          })
-          if (searchedOption) {
-            setSelectedOption(searchedOption.value)
-          }
     }
 
     function onDropdownClicked(e) {
@@ -95,9 +109,9 @@ export default function CustomSelect({selValue, options}) {
     }
 
     return (
-        <div id="customElement" className="custom-select-container">
-            <input type="text" id="labelElement" className="custom-select-value" onClick={onDropdownClicked} value={selText}
-                 onChange={onValueChanged} onKeyDown={onValueTyped}></input> 
+        <div id="customElement" className="custom-select-container" tabIndex="0" onKeyDown={onValueTyped}>
+            <span id="labelElement" className="custom-select-value" onClick={onDropdownClicked}
+                >{selText}</span> 
             <ul id="optionsCustomElement" className="custom-select-options" ref={customSelectOptions}>
                 {
                     soptions && soptions.map((opt, idx) => 
