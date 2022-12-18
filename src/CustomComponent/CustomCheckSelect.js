@@ -1,11 +1,11 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useMemo} from 'react';
 import './CheckSelectStyles.css';
 
 export default function CustomCheckSelect({selValues, options}) {
-    const [sselValues, setSselValues] = useState();
-    const [soptions, setSoptions] = useState();
+    const [soptions, setSoptions] = useState([]);
     const [selText, setSelText] = useState();
-    const [filterText, setFilterText] = useState();
+    const [filterText, setFilterText] = useState('');
+    const [isShow, setIsShow] = useState(false);
     const customSelectOptions = useRef();
 
     useEffect(()=>{
@@ -17,6 +17,7 @@ export default function CustomCheckSelect({selValues, options}) {
         setSoptions([...options]);
     }, [selValues, options]);
 
+
     function setSelectedOptions() {
         let seltextcoll = '';
         setSelText(seltextcoll);
@@ -24,10 +25,16 @@ export default function CustomCheckSelect({selValues, options}) {
         soptions && soptions.forEach(opt => {
             if (opt.selected)
                 seltextcoll += opt.text + ',';
+            else if (seltextcoll.indexOf(opt.text) > -1)
+                opt.selected = true;
         });
         setSelText(seltextcoll);
         //optionsCustomElement.scrollIntoView({ block: "nearest" });
     }
+
+    const filteredOpts = useMemo(() => {
+        return soptions && soptions.filter(opt => opt.text.toLowerCase().includes(filterText.toLowerCase()));
+    }, [soptions, filterText]);
 
     function showDropdown(isShow) {
         if (isShow)
@@ -37,11 +44,14 @@ export default function CustomCheckSelect({selValues, options}) {
     }
 
     function onToggleDropdown(e) {
-        showDropdown(true);
+        setIsShow(prevVal => { 
+            showDropdown(!prevVal);
+            return !prevVal; 
+        })
     }
 
     function onChangeFilterText(e) {
-
+        setFilterText(e.target.value);
     }
 
     function ontoggleItem(opt) {
@@ -64,7 +74,7 @@ export default function CustomCheckSelect({selValues, options}) {
                 <input className="form-control" type="text" placeholder="filter items" autoComplete="off" value={filterText} onChange={onChangeFilterText} />
                 <ul>
                 {                    
-                    soptions && soptions.map((opt, idx) =>                                           
+                    filteredOpts && filteredOpts.map((opt, idx) =>                                           
                         <li key={idx} data-value={opt.value} onClick={ontoggleItem.bind(ontoggleItem, opt)}>                            
                               {opt.selected && <i className="fa fa-check-square-o"></i>}                                                          
                               {!opt.selected &&  <i className="fa fa-square-o"></i>}                            

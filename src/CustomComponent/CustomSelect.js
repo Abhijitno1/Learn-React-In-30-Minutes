@@ -5,6 +5,7 @@ export default function CustomSelect({selValue, options}) {
     const [sselValue, setSselValue] = useState();
     const [soptions, setSoptions] = useState();
     const [selText, setSelText] = useState();
+    const [isShow, setIsShow] = useState(false);
     const customSelectOptions = useRef();
 
     useEffect(()=>{
@@ -45,6 +46,13 @@ export default function CustomSelect({selValue, options}) {
             customSelectOptions.current.classList.remove('show');
     }
 
+    function onToggleDropdown(e) {
+        setIsShow(prevVal => { 
+            showDropdown(!prevVal);
+            return !prevVal; 
+        })
+    }
+    
     function onOptionSelected(e) {
         setSelectedOption(e.target.getAttribute('data-value'));
         setSoptions([...soptions]);
@@ -101,16 +109,13 @@ export default function CustomSelect({selValue, options}) {
         //Also search amongst available options in the list
     }
 
-    function onDropdownClicked(e) {
-        showDropdown(true);
-    }
     function onDropdownBlur(e) {
         showDropdown(false);
     }
 
     return (
         <div id="customElement" className="custom-select-container" tabIndex="0" onKeyDown={onValueTyped}>
-            <span id="labelElement" className="custom-select-value" onClick={onDropdownClicked}
+            <span id="labelElement" className="custom-select-value" onClick={onToggleDropdown}
                 >{selText}</span> 
             <ul id="optionsCustomElement" className="custom-select-options" ref={customSelectOptions}>
                 {
