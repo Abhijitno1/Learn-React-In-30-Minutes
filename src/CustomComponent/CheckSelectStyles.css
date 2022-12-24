@@ -1,9 +1,10 @@
 div#wrapper {
     position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 220px;
 }
-span.input-group-addon {
-    width: auto;
-}
+
 div.dropdown-menu {
     overflow: auto;
     padding: 0;

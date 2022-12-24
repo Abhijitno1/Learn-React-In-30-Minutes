@@ -6,7 +6,6 @@ export default function CustomCheckSelect({selValues, options}) {
     const [selText, setSelText] = useState();
     const [filterText, setFilterText] = useState('');
     const [isShow, setIsShow] = useState(false);
-    const customSelectOptions = useRef();
 
     useEffect(()=>{
         setSelectedOptions();
@@ -36,18 +35,8 @@ export default function CustomCheckSelect({selValues, options}) {
         return soptions && soptions.filter(opt => opt.text.toLowerCase().includes(filterText.toLowerCase()));
     }, [soptions, filterText]);
 
-    function showDropdown(isShow) {
-        if (isShow)
-            customSelectOptions.current.classList.add('show');
-        else
-            customSelectOptions.current.classList.remove('show');
-    }
-
     function onToggleDropdown(e) {
-        setIsShow(prevVal => { 
-            showDropdown(!prevVal);
-            return !prevVal; 
-        })
+        setIsShow(prevVal => !prevVal);
     }
 
     function onChangeFilterText(e) {
@@ -64,13 +53,13 @@ export default function CustomCheckSelect({selValues, options}) {
 
     return (
         <div id="wrapper">
-            <div className="input-group">
+            <div className="input-group" onClick={onToggleDropdown}>
                 <input className="form-control" type="text" readOnly value={selText} />
-                <span className="input-group-addon dropdown-toggle" onClick={onToggleDropdown}>
+                <span className="input-group-addon dropdown-toggle">
                     <span className="caret"></span>
                 </span>
             </div>
-            <div className="dropdown-menu" ref={customSelectOptions}>
+            <div className={"dropdown-menu " + (isShow? 'show':'')}>
                 <input className="form-control" type="text" placeholder="filter items" autoComplete="off" value={filterText} onChange={onChangeFilterText} />
                 <ul>
                 {                    

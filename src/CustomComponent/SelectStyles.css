@@ -6,8 +6,24 @@
 }
 
 .custom-select-container {
+    width: 220px;
     display: inline-block;
     position: relative;
+    vertical-align: middle;
+}
+
+#customElement {
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  height: 3rem;
+}
+
+.caret {
+  float: right;
 }
 
 .custom-select-value {
@@ -18,7 +34,7 @@
     border: 1px solid black;
     padding: .25rem .5rem;
     cursor: pointer;
-    /*user-select: none;*/
+    user-select: none;
   }
   
 .custom-select-container:focus > .custom-select-value {
@@ -46,6 +62,7 @@
     max-height: 200px;
     overflow-y: auto; 
     text-align: initial;
+    z-index: 1000;
   }
   
   .custom-select-options.show {
@@ -55,6 +72,7 @@
   .custom-select-option {
     padding: .25rem .5rem;
     cursor: pointer;
+    list-style-type: none;
   }
   
   .custom-select-option:hover {

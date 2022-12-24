@@ -39,24 +39,14 @@ export default function CustomSelect({selValue, options}) {
         return -1;
     }
 
-    function showDropdown(isShow) {
-        if (isShow)
-            customSelectOptions.current.classList.add('show');
-        else
-            customSelectOptions.current.classList.remove('show');
-    }
-
     function onToggleDropdown(e) {
-        setIsShow(prevVal => { 
-            showDropdown(!prevVal);
-            return !prevVal; 
-        })
+        setIsShow(prevVal => !prevVal)
     }
     
     function onOptionSelected(e) {
         setSelectedOption(e.target.getAttribute('data-value'));
         setSoptions([...soptions]);
-        showDropdown(false);
+        setIsShow(false);
     }
 
     let debounceTimeout
@@ -64,11 +54,11 @@ export default function CustomSelect({selValue, options}) {
     function onValueTyped(e) {
         switch(e.code) {
             case "Space":
-                showDropdown(true);
+                setIsShow(true);
                 break;
             case "Escape":
             case "Enter":
-                showDropdown(false);
+                setIsShow(false);
                 break;
             case "ArrowUp":
                 var curSelIndex = getIndex4Value(sselValue);
@@ -110,14 +100,18 @@ export default function CustomSelect({selValue, options}) {
     }
 
     function onDropdownBlur(e) {
-        showDropdown(false);
+        setIsShow(false);
     }
 
     return (
-        <div id="customElement" className="custom-select-container" tabIndex="0" onKeyDown={onValueTyped}>
-            <span id="labelElement" className="custom-select-value" onClick={onToggleDropdown}
-                >{selText}</span> 
-            <ul id="optionsCustomElement" className="custom-select-options" ref={customSelectOptions}>
+        <div id="customElement" className="custom-select-container">
+            <div class="input-group" onClick={onToggleDropdown}>
+                <input id="labelElement" class="form-control" type="text" tabIndex="0" readOnly 
+                    onBlur="hideCombo1()" value={selText} onKeyDown={onValueTyped} />
+                <span class="input-group-addon dropdown-toggle"> <span class="caret"></span></span>
+            </div>
+            <ul id="optionsCustomElement" className={"custom-select-options " + (isShow? 'show': '')} 
+                ref={customSelectOptions}>
                 {
                     soptions && soptions.map((opt, idx) => 
                         <li className= {"custom-select-option " + (opt.selected? 'selected': '')}

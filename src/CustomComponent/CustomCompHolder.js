@@ -22,17 +22,21 @@ export default function CustomCompHolder() {
 
     return (
         <>
+            <hr/>
             <div>
                 <label htmlFor="statesList">States</label>&nbsp;&nbsp;
                 <CustomSelect name="statesList" selValue={checkedItems} options={options}  />
             </div>
+            <hr/>
             <div>
                 <label htmlFor="citiesList">States 2</label>&nbsp;&nbsp;
                 <CustomCheckSelect name="citiesList" selValue={checkedItems} options={options}  />
             </div>
+            <hr/>
             <div>
                 Checked items passed through props: <span>{checkedItems}</span>
             </div>
+            <hr/>
         </>
     );
 }
