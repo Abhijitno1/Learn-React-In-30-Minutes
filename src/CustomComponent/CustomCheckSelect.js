@@ -22,10 +22,12 @@ export default function CustomCheckSelect({selValues, options}) {
         setSelText(seltextcoll);
 
         soptions && soptions.forEach(opt => {
+            if (selValues.split(',').indexOf(opt.value) > -1)
+                opt.selected = true;
+            else
+                opt.selected = false;
             if (opt.selected)
                 seltextcoll += opt.text + ',';
-            else if (seltextcoll.indexOf(opt.text) > -1)
-                opt.selected = true;
         });
         setSelText(seltextcoll);
         //optionsCustomElement.scrollIntoView({ block: "nearest" });

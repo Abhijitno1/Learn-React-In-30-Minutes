@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './SelectStyles.css';
 
-export default function CustomSelect({selValue, options}) {
+export default function CustomSelect({selValue, valueSelected, options}) {
     const [sselValue, setSselValue] = useState();
     const [soptions, setSoptions] = useState();
     const [selText, setSelText] = useState();
@@ -23,6 +23,8 @@ export default function CustomSelect({selValue, options}) {
                 setSselValue(whichValue);
                 setSelText(opt.text);
                 opt.selected = true;
+                if (valueSelected) //Call event on parent component if defined
+                    valueSelected(whichValue);
                 //optionsCustomElement.scrollIntoView({ block: "nearest" });
             }
             else
@@ -103,6 +105,10 @@ export default function CustomSelect({selValue, options}) {
         setIsShow(false);
     }
 
+    function getValue() {
+        return sselValue;
+    }
+    
     return (
         <div id="customElement" className="custom-select-container">
             <div class="input-group" onClick={onToggleDropdown}>

@@ -4,8 +4,8 @@ import CustomCheckSelect from './CustomCheckSelect';
 
 
 export default function CustomCompHolder() {
-    //const [checkedItems, setCheckedItems] = useState();
-    var checkedItems = 'HP';
+    const [selectedItem, setSelectedItem] = useState('HP');
+    const [checkedItems, setCheckedItems] = useState([]);
 
     let options = [
         {value: 'MH', text: 'Maharashtra', selected: false},
@@ -16,8 +16,16 @@ export default function CustomCompHolder() {
         {value: 'WB', text: 'West Bengal', selected: false},
     ];
 
-    function displayCheckedItems() {
-        //return checkedItems.map(itm => itm.text).join(', ');
+    function setSelectedValueStates1(e) {
+        let selItem = prompt("Enter Selected Item value");
+        setSelectedItem(selItem);
+    }
+    function getSelectedValueStates1(whichValue) {
+        alert(whichValue);
+    }
+    function setSelectedValueStates2(whichValues) {
+        let selItem = prompt("Enter Selected Item values");
+        setCheckedItems(selItem);
     }
 
     return (
@@ -25,12 +33,18 @@ export default function CustomCompHolder() {
             <hr/>
             <div>
                 <label htmlFor="statesList">States</label>&nbsp;&nbsp;
-                <CustomSelect name="statesList" selValue={checkedItems} options={options}  />
+                <CustomSelect name="statesList" selValue={selectedItem} valueSelected={getSelectedValueStates1} options={options}  />
+                <div style={{marginLeft: '2rem', display:'inline-block'}}>
+                <button type="button" class="btn btn-primary" onClick={setSelectedValueStates1}>Set Selected Value</button>
+                </div>
             </div>
             <hr/>
             <div>
                 <label htmlFor="citiesList">States 2</label>&nbsp;&nbsp;
-                <CustomCheckSelect name="citiesList" selValue={checkedItems} options={options}  />
+                <CustomCheckSelect name="citiesList" selValues={checkedItems} options={options}  />
+                <div style={{marginLeft: '2rem', display:'inline-block'}}>
+                <button type="button" class="btn btn-primary" onClick={setSelectedValueStates2}>Set Selected Values</button>
+                </div>
             </div>
             <hr/>
             <div>
