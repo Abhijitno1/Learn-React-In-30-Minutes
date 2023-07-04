@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef, useMemo} from 'react';
 import './CheckSelectStyles.css';
 
-export default function CustomCheckSelect({selValues, options}) {
+export default function CustomCheckSelect({options}) {
     const [soptions, setSoptions] = useState([]);
     const [selText, setSelText] = useState();
     const [filterText, setFilterText] = useState('');
@@ -10,11 +10,11 @@ export default function CustomCheckSelect({selValues, options}) {
     useEffect(()=>{
         setSelectedOptions();
  
-    }, [selValues]);
+    }, []);
 
     useEffect(() => {
         setSoptions([...options]);
-    }, [selValues, options]);
+    }, [options]);
 
 
     function setSelectedOptions() {
@@ -22,10 +22,8 @@ export default function CustomCheckSelect({selValues, options}) {
         setSelText(seltextcoll);
 
         soptions && soptions.forEach(opt => {
-            if (selValues.split(',').indexOf(opt.value) > -1)
-                opt.selected = true;
-            else
-                opt.selected = false;
+            //if ((selValues || '').split(',').indexOf(opt.value) > -1)
+            //    opt.selected = true;
             if (opt.selected)
                 seltextcoll += opt.text + ',';
         });
@@ -49,6 +47,16 @@ export default function CustomCheckSelect({selValues, options}) {
         opt.selected = !opt.selected;
         setSelectedOptions();
         setSoptions([...soptions]);
+    }
+
+    function getSelectedValues() {
+        let seltextcoll = [];
+        soptions && soptions.forEach(opt => {
+            if (opt.selected === true)
+                seltextcoll.push(opt.value);
+        });
+        seltextcoll= seltextcoll.join(',');
+        return seltextcoll;
     }
 
     //console.log('soptions', soptions);
