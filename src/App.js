@@ -9,6 +9,7 @@ import CurrentWeather from './Weather/CurrentWeather';
 import Converters from './Converters/Converters';
 import Translator from './Translator/Translator';
 import CustomCompHolder from './CustomComponent/CustomCompHolder';
+import ReactForm from './Converters/ReactForm';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path='/customselect' element={<CustomCompHolder/>} />
           <Route path='/translator' element={<Translator/>} />
           <Route path='/converters' element={<Converters/>} />
+          <Route path='/reactform' element={<ReactForm/>} />
           <Route path='/curweather' element={<CurrentWeather/>} />
           <Route path='/curconvert' element={<CurConverter/>} />
           <Route path='/text2speech' element={<Text2Speech/>} />
