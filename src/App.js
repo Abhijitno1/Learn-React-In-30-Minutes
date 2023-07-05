@@ -8,10 +8,7 @@ import Speech2Text from './Text2Speech/Speech2Text';
 import CurrentWeather from './Weather/CurrentWeather';
 import Converters from './Converters/Converters';
 import Translator from './Translator/Translator';
-import CustomCompHolder from './CustomComponent/CustomCompHolder';
-import ReactForm from './Converters/ReactForm';
-import Clock from './Converters/Clock';
-
+import SubmenuContainer from './Converters/SubmenuContainer';
 
 function App() {
   return (
@@ -20,11 +17,9 @@ function App() {
       <div className="container">
         <Routes>
           <Route path='/' element={<TodoApp/>} />
-          <Route path='/customselect' element={<CustomCompHolder/>} />
           <Route path='/translator' element={<Translator/>} />
           <Route path='/converters' element={<Converters/>} />
-          <Route path='/reactform' element={<ReactForm/>} />
-          <Route path='/clock' element={<Clock/>} />
+          <Route path='/concepts' element={<SubmenuContainer/>} />
           <Route path='/curweather' element={<CurrentWeather/>} />
           <Route path='/curconvert' element={<CurConverter/>} />
           <Route path='/text2speech' element={<Text2Speech/>} />

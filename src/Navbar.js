@@ -7,16 +7,7 @@ export default function Navbar() {
                 Learn React in 30 Minutes
             </Link>
             <ul>
-            <div className="ddropdown">
-                    <button type="button" className="dropbtn">
-                        Practice <i className="fa fa-caret-down"></i>
-                    </button>
-                    <div className="dropdown-content">
-                        <CustomLink to="/customselect">Custom Select</CustomLink>
-                        <CustomLink to="/reactform">React Form</CustomLink>
-                        <CustomLink to="/clock">Clock</CustomLink>
-                    </div>
-                </div>
+                <CustomLink to="/concepts">React Concepts</CustomLink>
                 <CustomLink to="/translator">Translator</CustomLink>
                 <CustomLink to="/curweather">Current Weather</CustomLink>
                 <div className="ddropdown">
