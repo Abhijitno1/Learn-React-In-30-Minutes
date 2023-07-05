@@ -183,8 +183,10 @@ div.equals {
   transition: all 0.3s;
 }
 #sidebar .sidebar-header {
-  padding: 5px 10px;
+  padding: 5px 10px 20px;
   background: #6d7fcc;
+  overflow: hidden;
+  border-bottom: 1px solid #47748b;
 }
 
 #sidebar ul.components {
@@ -211,7 +213,7 @@ div.equals {
 
 #sidebar ul li.active > a {
   color: #fff;
-  background: #6d7fcc;
+  background: #8ea1e9;
 }
 
 #sidebar li.nav-item span {

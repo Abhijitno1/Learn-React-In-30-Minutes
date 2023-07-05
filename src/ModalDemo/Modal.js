@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import ReactDom from 'react-dom';
 
 const OVERLAY_STYLES = {
@@ -21,9 +21,14 @@ const MODAL_STYLES = {
     zIndex: 1000
 }
 export default function Modal({isOpen, children, onClose}) {
+    let count = useRef(0);
+
+    useEffect(() => { count.current = count.current +1});
+    console.log('This component has been rendered '+ count.current + ' times.');
+
     console.log('modal open', isOpen);
     if (!isOpen) return null;
-    
+
     return ReactDom.createPortal(
         <>
             <div style={OVERLAY_STYLES}></div>

@@ -2,6 +2,7 @@
 import {useState} from 'react';
 import ReactForm from './ReactForm';
 import Clock from './Clock';
+import CreateContextDemo from './CreateContextDemo';
 import CustomCompHolder from '../CustomComponent/CustomCompHolder';
 
 export default function SubmenuContainer() {
@@ -13,8 +14,7 @@ export default function SubmenuContainer() {
         setSelectedMenuId(evt.currentTarget.id);
     };
 
-    const determineChildComponent = () => {
-            
+    const determineChildComponent = () => {           
         switch (selectedMenuId) {
             case "mnuReactForm":
                 return <ReactForm/>
@@ -22,6 +22,8 @@ export default function SubmenuContainer() {
                 return <Clock/>
             case "mnuCustomSelect":
                 return <CustomCompHolder/>
+            case "mnuCreateContext":
+                return <CreateContextDemo />
             default:
                 return <ReactForm/>
         }
@@ -33,7 +35,7 @@ export default function SubmenuContainer() {
             {/* Sidebar */}
             <nav id="sidebar">
                 <div className="sidebar-header">
-                    <h3 className="dropdown-toggle">My YT Data</h3>
+                    <h3 className="dropdown-toggle">React Components</h3>
                 </div>
 
                 <ul className="list-unstyled components">
@@ -59,6 +61,15 @@ export default function SubmenuContainer() {
                         <a className="nav-link" href="#" id="mnuCustomSelect" onClick={menuClick}>
                             <i className="glyphicon glyphicon-book"></i>
                             <span>Custom Select</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul className="list-unstyled components">
+                    <li className={selectedMenuId=='mnuCreateContext'? 'nav-item active' : 'nav-item'}>
+                        <a className="nav-link" href="#" id="mnuCreateContext" onClick={menuClick}>
+                            <i className="glyphicon glyphicon-book"></i>
+                            <span>Create Context Demo</span>
                         </a>
                     </li>
                 </ul>
