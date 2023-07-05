@@ -14,6 +14,7 @@ export default function Navbar() {
                     <div className="dropdown-content">
                         <CustomLink to="/customselect">Custom Select</CustomLink>
                         <CustomLink to="/reactform">React Form</CustomLink>
+                        <CustomLink to="/clock">Clock</CustomLink>
                     </div>
                 </div>
                 <CustomLink to="/translator">Translator</CustomLink>
