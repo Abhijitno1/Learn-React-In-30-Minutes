@@ -3,6 +3,8 @@ import {useState} from 'react';
 import ReactForm from './ReactForm';
 import Clock from './Clock';
 import CreateContextDemo from './CreateContextDemo';
+import MemoDemo from './MemoDemo';
+import CustomHookDemo from './CustomHookDemo';
 import CustomCompHolder from '../CustomComponent/CustomCompHolder';
 
 export default function SubmenuContainer() {
@@ -24,6 +26,10 @@ export default function SubmenuContainer() {
                 return <CustomCompHolder/>
             case "mnuCreateContext":
                 return <CreateContextDemo />
+            case "mnuMemoDemo":
+                return <MemoDemo />
+            case "mnuCustomHookDemo":
+                return <CustomHookDemo />
             default:
                 return <ReactForm/>
         }
@@ -70,6 +76,24 @@ export default function SubmenuContainer() {
                         <a className="nav-link" href="#" id="mnuCreateContext" onClick={menuClick}>
                             <i className="glyphicon glyphicon-book"></i>
                             <span>Create Context Demo</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul className="list-unstyled components">
+                    <li className={selectedMenuId=='mnuMemoDemo'? 'nav-item active' : 'nav-item'}>
+                        <a className="nav-link" href="#" id="mnuMemoDemo" onClick={menuClick}>
+                            <i className="glyphicon glyphicon-book"></i>
+                            <span>Memo Demo</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul className="list-unstyled components">
+                    <li className={selectedMenuId=='mnuCustomHookDemo'? 'nav-item active' : 'nav-item'}>
+                        <a className="nav-link" href="#" id="mnuCustomHookDemo" onClick={menuClick}>
+                            <i className="glyphicon glyphicon-book"></i>
+                            <span>Custom Hook</span>
                         </a>
                     </li>
                 </ul>
