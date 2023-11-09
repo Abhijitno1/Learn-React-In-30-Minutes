@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import Modal from './Modal';
+import SignalCounter, {double} from './SignalCounter';
+
 const BUTTON_WRAPPER_STYLES = {
     position: 'relative',
     zIndex: 2
@@ -27,6 +29,12 @@ export default function ModalGround() {
             <p></p>
             <div style={OTHER_CONTENT_STYLES}>
                 Other content
+                <p>
+                    <SignalCounter />
+                </p>
+                <p>
+                    Double of count is {double}.
+                </p>
             </div>
         </>
     );
