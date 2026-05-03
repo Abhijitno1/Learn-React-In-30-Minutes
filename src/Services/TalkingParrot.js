@@ -36,7 +36,7 @@
         throw new Error('SpeechSynthesis is not supported in this browser');
 
     var output = {
-        speak: function (language, text2Speak) {
+        speak: function (language, text2Speak, speed) {
             msg.lang = voiceCodes[language];
             let selectedVoice = voices.find((v) => v.lang === voiceCodes[language]);
             if (!selectedVoice && language === 'mr') //Special handling for marathi
@@ -46,8 +46,10 @@
             }
             else if (!selectedVoice) {
                 selectedVoice = voices.find((v) => v.lang === 'en-US');
+                if (!selectedVoice) selectedVoice = voices[3]; //is en-US in chrome. This is a workaround to ensure that we get en-US voice even if the browser does not support language based voice selection
                 msg.lang = 'en-US';
             }
+            msg.rate = speed || 1;
             msg.voice = selectedVoice;
             msg.text = text2Speak;
             speechSynthesis.speak(msg);
@@ -64,6 +66,14 @@
 
     output.stopTalking = function () {
         speechSynthesis.cancel();
+    }
+
+    output.pauseTalking = function () {
+        speechSynthesis.pause();
+    }
+
+    output.resumeTalking = function () {
+        speechSynthesis.resume();
     }
 
     return output;
