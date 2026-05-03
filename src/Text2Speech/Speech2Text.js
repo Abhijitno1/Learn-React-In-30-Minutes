@@ -1,4 +1,5 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useEffect, useRef} from "react";
+import SpeechRecognition from '../Services/SpeechRecognition';
 
 const wrapperDivStyle = {
     width: '90%',
@@ -9,28 +10,29 @@ const userTextStyle = {
     width: '100%',
     height: '50vh'
 };
+var recogObject;
 
-export default function Speech2Text() {
+export default function Speech2Text() {   
     const [userText, setUserText] = useState('');
-    let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    let recognition = new SpeechRecognition();
-    recognition.continuous = false;
+
+    //Things to happen on load of component
+    useEffect(initialize, []);
+
+    function initialize() {
+        //console.log('selectedFromLang', selectedFromLang.value);
+        recogObject = SpeechRecognition('en-US');
+        recogObject.onCollectResult = function(transcript) {
+            setUserText(prevtxt => prevtxt + '\n' + transcript);
+        }
+    }
 
     function listenDialog() {
         setUserText('');
-        recognition.start();
-    }
-
-    recognition.onresult = function(event) {
-        var current = event.resultIndex;
-        var transcript = event.results[current][0].transcript;
-        setUserText(prevtxt => prevtxt + transcript);
+        recogObject.startRecording();
     }
 
     function stopIt() {
-        //https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
-        recognition.stop();
-        //recognition.abort();
+        recogObject.stopRecording();
     }
 
     return (
