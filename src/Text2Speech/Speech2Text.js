@@ -13,6 +13,7 @@ const userTextStyle = {
 var recogObject;
 
 export default function Speech2Text() {   
+    const userTextRef = useRef();
     const [userText, setUserText] = useState('');
 
     //Things to happen on load of component
@@ -23,21 +24,24 @@ export default function Speech2Text() {
         recogObject = SpeechRecognition('en-US');
         recogObject.onCollectResult = function(transcript) {
             setUserText(prevtxt => prevtxt + '\n' + transcript);
+            userTextRef.current.disabled = false;
         }
     }
 
     function listenDialog() {
         setUserText('');
         recogObject.startRecording();
+        userTextRef.current.disabled = true;
     }
 
     function stopIt() {
         recogObject.stopRecording();
+        userTextRef.current.disabled = false;
     }
 
     return (
         <div style={wrapperDivStyle}>
-            <textarea style={userTextStyle} value={userText} disabled={true}></textarea>
+            <textarea style={userTextStyle}  ref={userTextRef} value={userText} onChange={(e) => setUserText(e.target.value)}></textarea>
             <button onClick={listenDialog} >Listen & Display</button>
             <button onClick={stopIt} style={{marginLeft: '1rem'}}>Stop Listening</button>
         </div>
