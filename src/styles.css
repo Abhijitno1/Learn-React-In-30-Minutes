@@ -37,8 +37,22 @@ body {
   gap: 1rem;
 }
 
+#converter-bar ul li.nav-item a {
+  color: #E0E0E0;
+}
+#converter-bar ul li.nav-item a:hover {
+  background-color: transparent;
+  text-decoration: none;
+}
+#converter-bar ul li.nav-item:hover {
+  background-color: navy;
+}
+#converter-bar ul li.nav-item.active {
+  background-color: navy;
+}
+
 .nav a {
-  color: inherit;
+  color: #E0E0E0;
   text-decoration: none;
   height: 100%;
   display: flex;

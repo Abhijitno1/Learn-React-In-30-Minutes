@@ -14,6 +14,12 @@ const sidebarHeader = {
     padding: '5px 10px',
     background: '#6d7fcc'
 };
+const navItem = {
+    padding: '10px 15px',
+    display: 'block',
+    color: '#fff',
+    cursor: 'pointer',
+}
 const contentStyle = {
     display: 'flex',
     width: '100%',
@@ -141,33 +147,38 @@ export default function Converters() {
             <nav id="converter-bar" style={converterBar}>
                 <div style={sidebarHeader}><h3>Converters</h3></div>
                 <ul className="list-unstyled components">
-                    <li className="nav-item {fromUnit=='Gallon'? 'active':''}">
-                        <a className="nav-link" href="#" onClick={setCurConverter.bind(setCurConverter, 'Gallon2Litre')}>
+                    <li style={navItem} className={`nav-item ${fromUnit === 'Gallon' ? 'active' : ''}`}
+                         onClick={setCurConverter.bind(setCurConverter, 'Gallon2Litre')}>
+                        <a className="nav-link" href="#">
                             <i className="fa fa-hand-spock-o"></i>&nbsp;
                             <span>Gallon :: Litre</span>
                         </a>
                     </li>
-                    <li className="nav-item {fromUnit=='Mile'? 'active':''}">
-                        <a className="nav-link" href="#" onClick={setCurConverter.bind(setCurConverter, 'Miles2Km')}>
+                    <li style={navItem} className={`nav-item ${fromUnit === 'Mile' ? 'active' : ''}`}
+                         onClick={setCurConverter.bind(setCurConverter, 'Miles2Km')}>
+                        <a className="nav-link" href="#">
                             {/* https://www.w3schools.com/icons/fontawesome5_icons_marketing.asp */}
                             <i className="fa fa-hand-peace-o"></i>&nbsp;
                             <span>Miles :: Km</span>
                         </a>
                     </li>
-                    <li className="nav-item {fromUnit=='Farenhite'? 'active':''}">
-                        <a className="nav-link" href="#" onClick={setCurConverter.bind(setCurConverter, 'Fah2Cel')}>
+                    <li style={navItem} className={`nav-item ${fromUnit === 'Farenhite' ? 'active' : ''}`}
+                        href="#" onClick={setCurConverter.bind(setCurConverter, 'Fah2Cel')} >
+                        <a className="nav-link" href="#" >
                             <i className="fa fa-thumbs-o-up"></i>&nbsp;
                             <span>Farenhite :: Celcius</span>
                         </a>
                     </li>
-                    <li className="nav-item {fromUnit=='Foot'? 'active':''}">
-                        <a className="nav-link" href="#" onClick={setCurConverter.bind(setCurConverter, 'Ft2Mtr')}>
+                    <li style={navItem} className={`nav-item ${fromUnit === 'Foot' ? 'active' : ''}`}
+                        onClick={setCurConverter.bind(setCurConverter, 'Ft2Mtr')}>
+                        <a className="nav-link" href="#">
                             <i className="fa fa-hand-o-up"></i>&nbsp;
                             <span>Foot :: Meter</span>
                         </a>
                     </li>
-                    <li className="nav-item {fromUnit=='Pound'? 'active':''}">
-                        <a className="nav-link" href="#" onClick={setCurConverter.bind(setCurConverter, 'Pound2Kg')}>
+                    <li style={navItem} className={`nav-item ${fromUnit === 'Pound' ? 'active' : ''}`}
+                        onClick={setCurConverter.bind(setCurConverter, 'Pound2Kg')}>
+                        <a className="nav-link" href="#" >
                             <i className="fa fa-hand-paper-o"></i>&nbsp;
                             <span>Pound :: Kilogram</span>
                         </a>
