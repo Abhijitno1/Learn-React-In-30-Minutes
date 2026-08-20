@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 const wrapper = {
     display: 'flex',
     width: '100%',
+    height: 'calc(100vh - 60px)',
     alignItems: 'stretch'
 };
 const converterBar = {
     width: '230px',
-    height: '80vh',
+    height: '100%',
     background: '#7386D5',
     color: '#fff'
 };
@@ -24,6 +25,7 @@ const contentStyle = {
     display: 'flex',
     width: '100%',
     justifyContent: 'center',
+    paddingTop: '2rem',
 }
 const convertValue = {
     border: '1px solid #333',

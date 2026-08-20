@@ -6,13 +6,11 @@ body {
   margin: 0;
 }
 
-.container {
-  margin: 1rem;
+#container {
+  margin: 0;
   /*display: flex;*/
   text-align: center;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
 }
 
 .nav {
@@ -161,16 +159,16 @@ div.equals {
     margin: 0;
 }
 
-/* Begin styles related to side navigation bar */
 .wrapper {
   display: flex;
   width: 100%;
+  height: calc(100vh - 60px);
   align-items: stretch;
 }
 #sidebar {
   min-width: 220px;
   max-width: 220px;
-  min-height: 100vh;
+  height: 100%;
 }
 #sidebar.active {
   margin-left: -220px;
@@ -241,7 +239,7 @@ div.equals {
   padding: 15px;
   border-radius: 0;
 }
-#content .contentDetails {
-  padding: 0 15px;
+#content.contentDetails {
+  padding: 15px;
 }
 /* End styles related to side navigation bar */

@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="container">
+      <div id="container">
         <Routes>
           <Route path='/' element={<TodoApp/>} />
           <Route path='/translator' element={<Translator/>} />
